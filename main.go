@@ -14,7 +14,7 @@ import (
 
 var (
 	cfg        *config.Config
-	configfile = "/data/go/config/config.yaml"
+	configfile = "./config/config.toml"
 	router     *gin.Engine
 )
 
@@ -58,7 +58,7 @@ func init() {
 	setupLogger()
 
 	gin.SetMode(gin.ReleaseMode)
-	router.UseH2C = true
+	router = gin.Default()
 
 	// 将所有请求交由record模块处理
 	router.NoRoute(func(c *gin.Context) {
